@@ -1,0 +1,47 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 1) Forçar HTTPS
+    # Redirecionar todo tráfego HTTP para HTTPS (301)
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # 2) Padronizar www
+    # Redirecionar www para não-www (301)
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+</IfModule>
+
+# 3) Página 404 personalizada
+# Força o retorno à home, já que é one page
+ErrorDocument 404 /index.html
+
+# 4) Compressão gzip/deflate para performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# 5) Cache de Navegador (MUITO IMPORTANTE - REGRAS DE CACHE-BUSTING)
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Imagens e Mídias (jpg, png, webp, svg): 1 mês (para carregar rápido)
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+
+    # CSS e JS: 1 semana
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # HTML: 0 segundos (Forçar Cache-Control)
+    # NUNCA gere cache para arquivos HTML, garanta que atualizações no código reflitam instantaneamente.
+    <FilesMatch "\.html$">
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+</IfModule>

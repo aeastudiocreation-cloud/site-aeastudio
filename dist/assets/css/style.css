@@ -1,0 +1,233 @@
+/* ==========================================================================
+   Custom Styles — A&A Studio
+   Complementary to Tailwind CSS CDN
+   ========================================================================== */
+
+/* Smooth Scroll (GSAP Lenis vai sobrepor, mas mantemos o fallback) */
+html {
+    scroll-behavior: smooth;
+}
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Alpine.js Cloak */
+[x-cloak] {
+    display: none !important;
+}
+
+/* ==========================================================================
+   Animated Orbs (Global Antigravity Background)
+   ========================================================================== */
+#global-orbs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: #1A0B22; /* Fundo hiper escuro */
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    mix-blend-mode: screen; /* Crucial para brilho no fundo escuro */
+    animation: float-orb 20s infinite ease-in-out alternate;
+    pointer-events: none;
+}
+
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: #6D28D9; /* Roxo vibrante */
+    top: -100px;
+    right: -100px;
+    animation-duration: 25s;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: #D97706; /* Dourado escuro / Laranja */
+    bottom: -50px;
+    left: 10%;
+    animation-delay: -7s;
+    animation-duration: 22s;
+}
+
+.orb-3 {
+    width: 450px;
+    height: 450px;
+    background: #3B82F6; /* Azul Stitch */
+    top: 30%;
+    left: 50%;
+    animation-delay: -12s;
+    animation-duration: 28s;
+}
+
+.orb-4 {
+    width: 400px;
+    height: 400px;
+    background: #C084FC; /* Roxo claro */
+    bottom: 20%;
+    right: 20%;
+    animation-delay: -3s;
+    animation-duration: 26s;
+}
+
+/* ==========================================================================
+   Marquee (Infinite Scroll Text)
+   ========================================================================== */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+}
+.marquee-content {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes float-orb {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(40px, -40px) scale(1.1);
+    }
+    66% {
+        transform: translate(-30px, 30px) scale(0.95);
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+.animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fade-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animation-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+    animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+    animation-delay: 0.6s;
+}
+
+@keyframes fade-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scroll-triggered fade-in */
+.scroll-fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* WhatsApp button bounce */
+.animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes bounce-slow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ==========================================================================
+   Header Transitions
+   ========================================================================== */
+#main-header {
+    background: #ffffff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+}
+
+#main-header.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ==========================================================================
+   Alpine.js Collapse Transition Plugin Fallback
+   ========================================================================== */
+/* If x-collapse plugin is not loaded, provide a basic transition */
+[x-show] {
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   Selection Colors
+   ========================================================================== */
+::selection {
+    background-color: #4a154b;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Scrollbar Styling
+   ========================================================================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F9FAFB;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d8b772;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c5a059;
+}
