@@ -174,6 +174,10 @@ class RibbonBackground {
 // Initialize ribbons on specific sections
 (function() {
     function initRibbons() {
+        if (window.innerWidth <= 768) {
+            console.log('Ribbon backgrounds disabled on mobile for performance');
+            return;
+        }
         // Target containers by data attribute
         var containers = document.querySelectorAll('[data-ribbon-bg]');
         containers.forEach(function(el) {
