@@ -23,48 +23,7 @@
         rel="stylesheet">
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            purple: '#4a154b',
-                            'purple-dark': '#2b0f3d',
-                            'purple-light': '#7c2d7e',
-                            gold: '#d8b772',
-                            'gold-dark': '#c5a059',
-                            'gold-light': '#f5dfa3',
-                        },
-                        surface: {
-                            DEFAULT: '#F9FAFB',
-                            white: '#FFFFFF',
-                            cream: '#fdfaf3',
-                            lavender: '#f8f5fa',
-                        },
-                        txt: {
-                            DEFAULT: '#111827',
-                            secondary: '#4B5563',
-                            muted: '#6B7280',
-                        }
-                    },
-                    fontFamily: {
-                        heading: ['Outfit', 'sans-serif'],
-                        body: ['Inter', 'sans-serif'],
-                    },
-                    borderRadius: {
-                        'card': '15px',
-                    },
-                    boxShadow: {
-                        'card': '0 0 60px rgba(0, 0, 0, 0.08)',
-                        'card-hover': '0 20px 60px rgba(74, 21, 75, 0.12)',
-                        'soft': '0 4px 30px rgba(0, 0, 0, 0.06)',
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="./assets/css/tailwind.css">
 
     <!-- Alpine.js (Collapse Plugin + Core) -->
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
@@ -312,7 +271,7 @@
                     <div class="relative">
                         <div class="relative rounded-card overflow-hidden shadow-card">
                             <img src="./assets/img/sobre.jpg" alt="Equipe A&A Studio trabalhando em projetos digitais"
-                                width="800" height="600" loading="lazy" class="w-full h-auto object-cover aspect-[4/3]">
+                                loading="lazy" class="w-full h-auto object-cover aspect-[4/3]">
                         </div>
                         <!-- Decorative Element -->
                         <div
