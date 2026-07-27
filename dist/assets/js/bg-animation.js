@@ -51,9 +51,9 @@ class RibbonBackground {
         this.resizeObserver = new ResizeObserver(() => this.resize());
         this.resizeObserver.observe(this.container);
         
-        this.dpr = window.devicePixelRatio || 1;
+        this.dpr = window.innerWidth <= 768 ? 1 : (window.devicePixelRatio || 1);
         this.ribbons = [];
-        const numRibbons = 5;
+        const numRibbons = window.innerWidth <= 768 ? 3 : 5;
         for (let i = 0; i < numRibbons; i++) {
             this.ribbons.push(this.createRibbon(i, numRibbons));
         }
@@ -69,7 +69,7 @@ class RibbonBackground {
     
     createRibbon(index, total) {
         const points = [];
-        const numSegments = 12;
+        const numSegments = window.innerWidth <= 768 ? 8 : 12;
         // Spread evenly across the entire container width to guarantee full coverage
         const sectionWidth = this.width / total;
         const baseX = (sectionWidth * index) + (sectionWidth * Math.random());
@@ -174,10 +174,6 @@ class RibbonBackground {
 // Initialize ribbons on specific sections
 (function() {
     function initRibbons() {
-        if (window.innerWidth <= 768) {
-            console.log('Ribbon backgrounds disabled on mobile for performance');
-            return;
-        }
         // Target containers by data attribute
         var containers = document.querySelectorAll('[data-ribbon-bg]');
         containers.forEach(function(el) {
