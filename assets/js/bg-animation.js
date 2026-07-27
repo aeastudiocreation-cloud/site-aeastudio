@@ -25,7 +25,7 @@ class RibbonBackground {
         this.animate = this.animate.bind(this);
         
         this.init();
-        if (!this.observer) this.animate();
+        this.animate();
     }
     
     init() {
@@ -51,21 +51,6 @@ class RibbonBackground {
         this.resizeObserver = new ResizeObserver(() => this.resize());
         this.resizeObserver.observe(this.container);
         
-        this.isVisible = true;
-        this.animationFrameId = null;
-        
-        if ('IntersectionObserver' in window) {
-            this.observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    this.isVisible = entry.isIntersecting;
-                    if (this.isVisible && !this.animationFrameId) {
-                        this.animate();
-                    }
-                });
-            }, { threshold: 0 });
-            this.observer.observe(this.container);
-        }
-
         this.dpr = window.devicePixelRatio || 1;
         this.ribbons = [];
         const numRibbons = 5;
@@ -112,11 +97,6 @@ class RibbonBackground {
     }
     
     animate() {
-        if (!this.isVisible) {
-            this.animationFrameId = null;
-            return;
-        }
-        
         this.time += 1;
         
         // 1. Clear the canvas to make it transparent so the CSS gradient shows through
@@ -187,7 +167,7 @@ class RibbonBackground {
         this.ctx.globalCompositeOperation = 'source-over';
         this.ctx.globalAlpha = 1.0;
         
-        this.animationFrameId = requestAnimationFrame(this.animate);
+        requestAnimationFrame(this.animate);
     }
 }
 
