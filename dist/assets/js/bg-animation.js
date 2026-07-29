@@ -130,7 +130,7 @@ class RibbonBackground {
                 this.ctx.lineTo(p3.x, p3.y);
                 this.ctx.closePath();
                 
-                this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.6)`;
+                this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.35)`;
                 this.ctx.fill();
                 
                 // Opposite triangle
@@ -147,7 +147,7 @@ class RibbonBackground {
                     this.ctx.lineTo(p3Prev.x, p3Prev.y);
                     this.ctx.closePath();
                     
-                    this.ctx.fillStyle = `rgba(${Math.floor(b*0.8)}, ${Math.floor(r*0.8)}, ${Math.floor(g*0.8)}, 0.4)`;
+                    this.ctx.fillStyle = `rgba(${Math.floor(b*0.8)}, ${Math.floor(r*0.8)}, ${Math.floor(g*0.8)}, 0.2)`;
                     this.ctx.fill();
                 }
             }
