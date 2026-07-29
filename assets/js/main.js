@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. GSAP ScrollTrigger Animations (Stitch Vibe)
     // ==========================================================================
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
 
     // Hero Section Animation (Initial Load)
     gsap.from("#hero h1", {
