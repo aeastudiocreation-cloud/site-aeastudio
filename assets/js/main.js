@@ -52,10 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================================================
-    // 3. GSAP ScrollTrigger Animations (Stitch Vibe)
-    // ==========================================================================
-    gsap.registerPlugin(ScrollTrigger);
+    setTimeout(() => {
+        // ==========================================================================
+        // 3. GSAP ScrollTrigger Animations (Stitch Vibe)
+        // ==========================================================================
+        gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });
 
     // Hero Section Animation (Initial Load)
@@ -148,5 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ease: "power2.out"
         });
     });
+    }, window.innerWidth < 768 ? 250 : 50);
 
 });

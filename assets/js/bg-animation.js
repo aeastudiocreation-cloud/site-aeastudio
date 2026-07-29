@@ -24,9 +24,24 @@ class RibbonBackground {
         this.time = Math.random() * 1000;
         this.resize = this.resize.bind(this);
         this.animate = this.animate.bind(this);
+        this.isPlaying = false;
         
         this.init();
-        this.animate();
+        
+        // Use IntersectionObserver to pause animation when out of view
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!this.isPlaying) {
+                        this.isPlaying = true;
+                        this.animate();
+                    }
+                } else {
+                    this.isPlaying = false;
+                }
+            });
+        }, { threshold: 0.01 });
+        this.observer.observe(this.container);
     }
     
     init() {
@@ -41,7 +56,8 @@ class RibbonBackground {
         
         this.dpr = window.devicePixelRatio || 1;
         this.ribbons = [];
-        const numRibbons = 5;
+        const isMobile = this.width < 768;
+        const numRibbons = isMobile ? 3 : 5;
         for (let i = 0; i < numRibbons; i++) {
             this.ribbons.push(this.createRibbon(i, numRibbons));
         }
@@ -57,11 +73,11 @@ class RibbonBackground {
     
     createRibbon(index, total) {
         const points = [];
-        const numSegments = 12;
+        const isMobile = this.width < 768;
+        const numSegments = isMobile ? 8 : 12;
         // Spread evenly across the entire container width to guarantee full coverage
         const sectionWidth = this.width / total;
         const baseX = (sectionWidth * index) + (sectionWidth * Math.random());
-        const isMobile = this.width < 768;
         
         for (let j = 0; j <= numSegments; j++) {
             points.push({
@@ -86,6 +102,8 @@ class RibbonBackground {
     }
     
     animate() {
+        if (!this.isPlaying) return;
+        
         this.time += 1;
         
         // 1. Clear the canvas to make it transparent so the CSS gradient shows through
@@ -175,9 +193,14 @@ class RibbonBackground {
         console.log('Ribbon backgrounds initialized on', containers.length, 'sections');
     }
 
+    // Delay initialization to prevent blocking main thread on initial paint
+    function delayInit() {
+        setTimeout(initRibbons, window.innerWidth < 768 ? 400 : 100);
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initRibbons);
+        document.addEventListener('DOMContentLoaded', delayInit);
     } else {
-        initRibbons();
+        delayInit();
     }
 })();

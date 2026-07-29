@@ -7,7 +7,8 @@
   "description": "",
   "main": "tailwind.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "optimize:img": "node optimize-images.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/aeastudiocreation-cloud/site-aeastudio/issues"
   },
-  "homepage": "https://github.com/aeastudiocreation-cloud/site-aeastudio#readme"
+  "homepage": "https://github.com/aeastudiocreation-cloud/site-aeastudio#readme",
+  "dependencies": {
+    "sharp": "^0.35.3"
+  }
 }
