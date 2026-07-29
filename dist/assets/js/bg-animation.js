@@ -10,6 +10,7 @@ class RibbonBackground {
         this.canvas.style.height = '100%';
         this.canvas.style.zIndex = '0';
         this.canvas.style.pointerEvents = 'none';
+        this.canvas.style.mixBlendMode = 'screen';
         
         // Ensure container is positioned
         const pos = getComputedStyle(this.container).position;
@@ -29,19 +30,6 @@ class RibbonBackground {
     }
     
     init() {
-        // Create canvas
-        this.canvas = document.createElement('canvas');
-        this.canvas.style.position = 'absolute';
-        this.canvas.style.top = '0';
-        this.canvas.style.left = '0';
-        this.canvas.style.width = '100%';
-        this.canvas.style.height = '100%';
-        this.canvas.style.zIndex = '0'; // Put it behind the content but above the background
-        this.canvas.style.pointerEvents = 'none'; // Ensure it doesn't block interactions
-        
-        // A máscara foi removida para que a animação ocupe 100% da área sem espaços em branco no topo
-
-        this.container.appendChild(this.canvas);
         this.ctx = this.canvas.getContext('2d', { alpha: true });
         
         this.resize();
@@ -51,9 +39,9 @@ class RibbonBackground {
         this.resizeObserver = new ResizeObserver(() => this.resize());
         this.resizeObserver.observe(this.container);
         
-        this.dpr = window.innerWidth <= 768 ? 1 : (window.devicePixelRatio || 1);
+        this.dpr = window.devicePixelRatio || 1;
         this.ribbons = [];
-        const numRibbons = window.innerWidth <= 768 ? 3 : 5;
+        const numRibbons = 5;
         for (let i = 0; i < numRibbons; i++) {
             this.ribbons.push(this.createRibbon(i, numRibbons));
         }
@@ -69,22 +57,23 @@ class RibbonBackground {
     
     createRibbon(index, total) {
         const points = [];
-        const numSegments = window.innerWidth <= 768 ? 8 : 12;
+        const numSegments = 12;
         // Spread evenly across the entire container width to guarantee full coverage
         const sectionWidth = this.width / total;
         const baseX = (sectionWidth * index) + (sectionWidth * Math.random());
+        const isMobile = this.width < 768;
         
         for (let j = 0; j <= numSegments; j++) {
             points.push({
-                x: baseX + (Math.random() - 0.5) * 150,
+                x: baseX + (Math.random() - 0.5) * (isMobile ? 120 : 150),
                 y: (this.height / numSegments) * j + (Math.random() - 0.5) * 80,
-                baseX: baseX + (Math.random() - 0.5) * 100,
+                baseX: baseX + (Math.random() - 0.5) * (isMobile ? 100 : 100),
                 baseY: (this.height / numSegments) * j,
                 phaseX: Math.random() * Math.PI * 2,
                 phaseY: Math.random() * Math.PI * 2,
                 speedX: 0.002 + Math.random() * 0.005,
                 speedY: 0.002 + Math.random() * 0.005,
-                radius: 100 + Math.random() * 200
+                radius: (isMobile ? 80 : 100) + Math.random() * (isMobile ? 150 : 200)
             });
         }
         
@@ -92,7 +81,7 @@ class RibbonBackground {
             points: points,
             colorPhase: Math.random() * Math.PI * 2,
             colorSpeed: 0.005 + Math.random() * 0.01,
-            width: 100 + Math.random() * 150
+            width: (isMobile ? 80 : 100) + Math.random() * (isMobile ? 120 : 150)
         };
     }
     
@@ -141,7 +130,7 @@ class RibbonBackground {
                 this.ctx.lineTo(p3.x, p3.y);
                 this.ctx.closePath();
                 
-                this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.35)`;
+                this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.6)`;
                 this.ctx.fill();
                 
                 // Opposite triangle
@@ -158,7 +147,7 @@ class RibbonBackground {
                     this.ctx.lineTo(p3Prev.x, p3Prev.y);
                     this.ctx.closePath();
                     
-                    this.ctx.fillStyle = `rgba(${Math.floor(b*0.8)}, ${Math.floor(r*0.8)}, ${Math.floor(g*0.8)}, 0.2)`;
+                    this.ctx.fillStyle = `rgba(${Math.floor(b*0.8)}, ${Math.floor(r*0.8)}, ${Math.floor(g*0.8)}, 0.4)`;
                     this.ctx.fill();
                 }
             }
