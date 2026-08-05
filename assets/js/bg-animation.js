@@ -1,4 +1,4 @@
-class RibbonBackground {
+﻿class RibbonBackground {
     constructor(containerElement) {
         this.container = containerElement;
         this.canvas = document.createElement('canvas');
@@ -204,3 +204,5 @@ class RibbonBackground {
         delayInit();
     }
 })();
+
+
