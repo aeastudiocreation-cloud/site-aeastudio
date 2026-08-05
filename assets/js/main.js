@@ -33,7 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if(target) {
-                lenis.scrollTo(target, { offset: -80 });
+                // Acelerar rolagem: 0.5s no mobile, 1s no desktop
+                const isMobile = window.innerWidth < 768;
+                lenis.scrollTo(target, { 
+                    offset: -80,
+                    duration: isMobile ? 0.5 : 1.0 
+                });
             }
         });
     });
