@@ -61,7 +61,10 @@
             background-image: linear-gradient(to bottom right, rgba(26, 11, 34, 0.95) 0%, rgba(236, 72, 153, 0.20) 50%, rgba(26, 11, 34, 0.95) 100%);
         }
         @media (min-width: 640px) { .sm-separator { display: inline; } }
-        @media (max-width: 639px) { .sm-separator { display: none; } }
+        @media (max-width: 639px) { 
+            .sm-separator { display: none; }
+            .mobile-grid-spacing { row-gap: 3rem !important; }
+        }
     </style>
 </head>
 
@@ -461,34 +464,34 @@ html.lenis, html.lenis body {
                 <div class="max-w-7xl mx-auto px-6 lg:px-8">
                     <div
                         class="bg-[#111]/80 backdrop-blur-xl border border-white/10 rounded-card shadow-card p-6 lg:p-8">
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8" style="row-gap: 2.5rem;">
-                            <div class="flex items-center gap-4">
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mobile-grid-spacing">
+                            <div class="flex items-start sm:items-center gap-3 sm:gap-4">
                                 <div
-                                    class="flex-shrink-0 w-12 h-12 bg-brand-gold/15 rounded-xl flex items-center justify-center">
-                                    <i class="fa-solid fa-object-group text-brand-gold text-lg"></i>
+                                    class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-brand-gold/15 rounded-xl flex items-center justify-center">
+                                    <i class="fa-solid fa-object-group text-brand-gold text-base sm:text-lg"></i>
                                 </div>
-                                <span class="text-sm font-semibold text-white">Design focado em conversão</span>
+                                <span class="text-xs sm:text-sm font-semibold text-white leading-tight">Design focado em conversão</span>
                             </div>
-                            <div class="flex items-center gap-4">
+                            <div class="flex items-start sm:items-center gap-3 sm:gap-4">
                                 <div
-                                    class="flex-shrink-0 w-12 h-12 bg-brand-gold/15 rounded-xl flex items-center justify-center">
-                                    <i class="fa-solid fa-rocket text-brand-gold text-lg"></i>
+                                    class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-brand-gold/15 rounded-xl flex items-center justify-center">
+                                    <i class="fa-solid fa-rocket text-brand-gold text-base sm:text-lg"></i>
                                 </div>
-                                <span class="text-sm font-semibold text-white">Carregamento ultra rápido</span>
+                                <span class="text-xs sm:text-sm font-semibold text-white leading-tight">Carregamento ultra rápido</span>
                             </div>
-                            <div class="flex items-center gap-4">
+                            <div class="flex items-start sm:items-center gap-3 sm:gap-4">
                                 <div
-                                    class="flex-shrink-0 w-12 h-12 bg-brand-gold/15 rounded-xl flex items-center justify-center">
-                                    <i class="fa-solid fa-headset text-brand-gold text-lg"></i>
+                                    class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-brand-gold/15 rounded-xl flex items-center justify-center">
+                                    <i class="fa-solid fa-headset text-brand-gold text-base sm:text-lg"></i>
                                 </div>
-                                <span class="text-sm font-semibold text-white">Atendimento personalizado</span>
+                                <span class="text-xs sm:text-sm font-semibold text-white leading-tight">Atendimento personalizado</span>
                             </div>
-                            <div class="flex items-center gap-4">
+                            <div class="flex items-start sm:items-center gap-3 sm:gap-4">
                                 <div
-                                    class="flex-shrink-0 w-12 h-12 bg-brand-gold/15 rounded-xl flex items-center justify-center">
-                                    <i class="fa-solid fa-magnifying-glass-chart text-brand-gold text-lg"></i>
+                                    class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-brand-gold/15 rounded-xl flex items-center justify-center">
+                                    <i class="fa-solid fa-magnifying-glass-chart text-brand-gold text-base sm:text-lg"></i>
                                 </div>
-                                <span class="text-sm font-semibold text-white">Expertise em SEO Local</span>
+                                <span class="text-xs sm:text-sm font-semibold text-white leading-tight">Expertise em SEO Local</span>
                             </div>
                         </div>
                     </div>
