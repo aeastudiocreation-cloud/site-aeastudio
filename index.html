@@ -60,6 +60,8 @@
             background-color: rgba(26, 11, 34, 0.85);
             background-image: linear-gradient(to bottom right, rgba(26, 11, 34, 0.95) 0%, rgba(236, 72, 153, 0.20) 50%, rgba(26, 11, 34, 0.95) 100%);
         }
+        @media (min-width: 640px) { .sm-separator { display: inline; } }
+        @media (max-width: 639px) { .sm-separator { display: none; } }
     </style>
 </head>
 
@@ -420,7 +422,7 @@ html.lenis, html.lenis body {
                                 <i class="fa-solid fa-globe shrink-0"></i>
                                 <span>Atendemos clientes de todo o mundo</span>
                             </div>
-                            <span class="hidden sm:inline opacity-50">|</span>
+                            <span class="sm-separator opacity-50">|</span>
                             <span>Sites em Português e Inglês</span>
                         </div>
                         <h1
