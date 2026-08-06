@@ -8,8 +8,8 @@ module.exports = {
                   purple: '#4a154b',
                   'purple-dark': '#2b0f3d',
                   'purple-light': '#7c2d7e',
-                  gold: '#d8b772',
-                  'gold-dark': '#c5a059',
+                  gold: '#f0d084',
+                  'gold-dark': '#d8b772',
                   'gold-light': '#f5dfa3',
               },
               surface: {
